@@ -1,5 +1,6 @@
 <Project>
   <PropertyGroup>
+    <PackageId>WebFormsForCore.$(MSBuildProjectName)</PackageId>
     <Title>$(Product)</Title>
     <Authors>Andrey Taritsyn</Authors>
     <PackageReadmeFile>PACKAGE-DESCRIPTION.md</PackageReadmeFile>
