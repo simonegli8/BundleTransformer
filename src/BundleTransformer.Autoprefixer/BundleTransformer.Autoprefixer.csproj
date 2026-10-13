@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Bundle Transformer: Autoprefixer</Product>
     <VersionPrefix>1.17.7</VersionPrefix>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFrameworks>net40;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -22,9 +22,15 @@
     <PackageReleaseNotes>Added support for the Autoprefixer version 10.6.1.</PackageReleaseNotes>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="System.configuration" Pack="false" />
+  <ItemGroup Condition="$(TargetFramework) == 'net40'">
+    <Reference Include="System.Configuration" Pack="false" />
+  </ItemGroup>
 
+  <ItemGroup Condition="$(TargetFramework) != 'net40'">
+    <PackageReference Include="WebFormsForCore.Configuration" Version="1.6.8" Pack="true" />
+  </ItemGroup>
+  
+  <ItemGroup>
     <PackageReference Include="AutoprefixerHost" Version="3.2.12" />
 
     <ProjectReference Include="../BundleTransformer.Core/BundleTransformer.Core.csproj" />

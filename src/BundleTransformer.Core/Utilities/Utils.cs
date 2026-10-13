@@ -266,7 +266,9 @@ namespace BundleTransformer.Core.Utilities
 			}
 			else if (rawData[0] == 0x2b && rawData[1] == 0x2f && rawData[2] == 0x76)
 			{
+#pragma warning disable SYSLIB0001
 				encoding = Encoding.UTF7;
+#pragma warning restore SYSLIB0001
 			}
 			else
 			{

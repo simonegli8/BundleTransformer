@@ -1,0 +1,90 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/.nuget/">
+    <File Path=".nuget/NuGet.Config" />
+    <File Path=".nuget/NuGet.exe" />
+    <File Path=".nuget/NuGet.targets" />
+  </Folder>
+  <Folder Name="/build/">
+    <File Path="build/common.props" />
+    <File Path="build/initialize-standard-nuspec-properties.targets" />
+    <File Path="build/Key.snk" />
+    <File Path="build/nuget-common.props" />
+    <File Path="build/nuget-for-content.props" />
+    <File Path="build/nuget-for-dotnet-lib.props" />
+    <File Path="build/strong-name-signing.props" />
+  </Folder>
+  <Folder Name="/licenses/">
+    <File Path="Licenses/autoprefixer-host-license.txt" />
+    <File Path="Licenses/autoprefixer-license.txt" />
+    <File Path="Licenses/clean-css-license.txt" />
+    <File Path="Licenses/clone-license.txt" />
+    <File Path="Licenses/closure-compiler-license.txt" />
+    <File Path="Licenses/coffeescript-license.txt" />
+    <File Path="Licenses/csso-license.txt" />
+    <File Path="Licenses/handlebars-license.txt" />
+    <File Path="Licenses/hogan-license.txt" />
+    <File Path="Licenses/js-engine-switcher-license.txt" />
+    <File Path="Licenses/jsmin-license.txt" />
+    <File Path="Licenses/jsmin-net-license.txt" />
+    <File Path="Licenses/less-license.txt" />
+    <File Path="Licenses/libsass-host-license.txt" />
+    <File Path="Licenses/libsass-license.txt" />
+    <File Path="Licenses/microsoft-ajax-minifier-license.txt" />
+    <File Path="Licenses/microsoft-aspnet-web-optimization-license.txt" />
+    <File Path="Licenses/microsoft-dotnet-arcade-sdk-license.txt" />
+    <File Path="Licenses/microsoft-net-http-license.txt" />
+    <File Path="Licenses/newtonsoft-json-license.txt" />
+    <File Path="Licenses/nuglify-license.txt" />
+    <File Path="Licenses/packer-license.txt" />
+    <File Path="Licenses/typescript-license.txt" />
+    <File Path="Licenses/uglify-js-license.txt" />
+    <File Path="Licenses/webgrease-license.txt" />
+    <File Path="Licenses/yui-compressor-license.txt" />
+    <File Path="Licenses/yui-compressor-net-license.txt" />
+  </Folder>
+  <Folder Name="/samples/">
+    <Project Path="samples/BundleTransformer.Sample.AspNet462.Mvc4/BundleTransformer.Sample.AspNet462.Mvc4.csproj" Id="22433a9d-93d7-4c11-8540-a79a05bdcf63">
+      <Build Solution="*|x64" Project="false" />
+      <Build Solution="*|x86" Project="false" />
+    </Project>
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="CHANGELOG.md" />
+    <File Path="global.json" />
+    <File Path="LICENSE.txt" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/BundleTransformer.Autoprefixer/BundleTransformer.Autoprefixer.csproj" />
+    <Project Path="src/BundleTransformer.CleanCss/BundleTransformer.CleanCss.csproj" />
+    <Project Path="src/BundleTransformer.Closure/BundleTransformer.Closure.csproj" />
+    <Project Path="src/BundleTransformer.CoffeeScript/BundleTransformer.CoffeeScript.csproj" />
+    <Project Path="src/BundleTransformer.ConfigurationIntelliSense/BundleTransformer.ConfigurationIntelliSense.csproj" />
+    <Project Path="src/BundleTransformer.Core/BundleTransformer.Core.csproj" />
+    <Project Path="src/BundleTransformer.Csso/BundleTransformer.Csso.csproj" />
+    <Project Path="src/BundleTransformer.Handlebars/BundleTransformer.Handlebars.csproj">
+      <Build Solution="*|x64" Project="false" />
+      <Build Solution="*|x86" Project="false" />
+    </Project>
+    <Project Path="src/BundleTransformer.Hogan/BundleTransformer.Hogan.csproj" />
+    <Project Path="src/BundleTransformer.JsMin/BundleTransformer.JsMin.csproj" />
+    <Project Path="src/BundleTransformer.Less/BundleTransformer.Less.csproj" />
+    <Project Path="src/BundleTransformer.MicrosoftAjax/BundleTransformer.MicrosoftAjax.csproj" />
+    <Project Path="src/BundleTransformer.NUglify/BundleTransformer.NUglify.csproj" />
+    <Project Path="src/BundleTransformer.Packer/BundleTransformer.Packer.csproj" />
+    <Project Path="src/BundleTransformer.SassAndScss/BundleTransformer.SassAndScss.csproj" />
+    <Project Path="src/BundleTransformer.TypeScript/BundleTransformer.TypeScript.csproj" />
+    <Project Path="src/BundleTransformer.UglifyJS/BundleTransformer.UglifyJs.csproj" />
+    <Project Path="src/BundleTransformer.WG/BundleTransformer.WG.csproj" />
+    <Project Path="src/BundleTransformer.Yui/BundleTransformer.Yui.csproj" />
+  </Folder>
+  <Folder Name="/test/">
+    <Project Path="test/BundleTransformer.Tests/BundleTransformer.Tests.csproj" />
+  </Folder>
+</Solution>

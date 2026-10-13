@@ -83,7 +83,9 @@ namespace BundleTransformer.Core.FileSystem
 				using (var stream = virtualFile.Open())
 				{
 					bytes = new byte[stream.Length];
+#pragma warning disable CA2022
 					stream.Read(bytes, 0, (int) stream.Length);
+#pragma warning restore CA2022
 				}
 			}
 			catch (FileNotFoundException e)

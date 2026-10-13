@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Bundle Transformer: Handlebars</Product>
     <VersionPrefix>1.17.1</VersionPrefix>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFrameworks>net40;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -22,10 +22,16 @@
     <PackageReleaseNotes>Added support for the Handlebars version 4.7.9.</PackageReleaseNotes>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="System.configuration" Pack="false" />
+  <ItemGroup Condition="$(TargetFramework) == 'net40'">
+    <Reference Include="System.Configuration" Pack="false" />
     <Reference Include="System.Web" Pack="false" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) != 'net40'">
+    <PackageReference Include="WebFormsForCore.Configuration" Version="1.6.8" Pack="true" />
+    <PackageReference Include="WebFormsForCore.Web" Version="1.6.8" Pack="true" />
+  </ItemGroup>
 
+  <ItemGroup>
     <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.31.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 
@@ -57,10 +63,10 @@
     <None Include="../../Licenses/newtonsoft-json-license.txt" PackagePath="/" Pack="true" Visible="false" />
   </ItemGroup>
 
-  <Target Name="JsMinification" AfterTargets="BeforeBuild">
-    <Exec Command='AjaxMinifier.exe "$(ProjectDir)Resources/handlebars.js" –out "$(ProjectDir)Resources/handlebars.min.js"
-AjaxMinifier.exe "$(ProjectDir)Resources/hbsHelper.js" –out "$(ProjectDir)Resources/hbsHelper.min.js"'
-      WorkingDirectory="$(ProjectDir)../../tools/Microsoft Ajax Minifier/"
+  <Target Name="JsMinification" BeforeTargets="DispatchToInnerBuilds" Condition="'$(TargetFramework)' == ''">
+    <Exec Command='"$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/AjaxMinifier.exe" "$(MSBuildProjectDirectory)/Resources/handlebars.js" –out "$(MSBuildProjectDirectory)/Resources/handlebars.min.js"
+"$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/AjaxMinifier.exe" "$(MSBuildProjectDirectory)/Resources/hbsHelper.js" –out "$(MSBuildProjectDirectory)/Resources/hbsHelper.min.js"'
+      WorkingDirectory="$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/"
       ConsoleToMsBuild="true" />
   </Target>
 

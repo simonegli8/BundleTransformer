@@ -22,9 +22,14 @@
     <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="System.configuration" Pack="false" />
+  <ItemGroup Condition="$(TargetFramework) == 'net40'">
+    <Reference Include="System.Configuration" Pack="false" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) != 'net40'">
+    <PackageReference Include="WebFormsForCore.Configuration" Version="1.6.8" Pack="true" />
+  </ItemGroup>
 
+  <ItemGroup>
     <PackageReference Include="AjaxMin" Version="5.14.5506.26202" Alias="ajaxmin" />
 
     <ProjectReference Include="../BundleTransformer.Core/BundleTransformer.Core.csproj" />

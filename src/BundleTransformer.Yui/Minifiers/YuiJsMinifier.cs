@@ -331,7 +331,10 @@ namespace BundleTransformer.Yui.Minifiers
 					break;
 				case "utf7":
 				case "utf-7":
+#pragma warning disable SYSLIB0001
 					convertedEncoding = Encoding.UTF7;
+#pragma warning restore SYSLIB0001
+
 					break;
 				case "utf8":
 				case "utf-8":

@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Bundle Transformer: CSSO</Product>
     <VersionPrefix>1.14.0</VersionPrefix>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFrameworks>net40;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -22,11 +22,16 @@
     <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="System.configuration" Pack="false" />
+  <ItemGroup Condition="$(TargetFramework) == 'net40'">
+    <Reference Include="System.Configuration" Pack="false" />
+  </ItemGroup>
+  <ItemGroup Condition="$(TargetFramework) != 'net40'">
+    <PackageReference Include="WebFormsForCore.Configuration" Version="1.6.8" Pack="true" />
+  </ItemGroup>
 
+  <ItemGroup>
     <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.24.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 
     <ProjectReference Include="../BundleTransformer.Core/BundleTransformer.Core.csproj" />
   </ItemGroup>
@@ -56,11 +61,11 @@
     <None Include="../../Licenses/newtonsoft-json-license.txt" PackagePath="/" Pack="true" Visible="false" />
   </ItemGroup>
 
-  <Target Name="JsMinification" AfterTargets="BeforeBuild">
+  <Target Name="JsMinification" BeforeTargets="DispatchToInnerBuilds" Condition="'$(TargetFramework)' == ''">
     <Exec
-      Command='AjaxMinifier.exe "$(ProjectDir)Resources/csso-combined.js" –out "$(ProjectDir)Resources/csso-combined.min.js" -ignore:JS1019
-AjaxMinifier.exe "$(ProjectDir)Resources/cssoHelper.js" –out "$(ProjectDir)Resources/cssoHelper.min.js"'
-      WorkingDirectory="$(ProjectDir)../../tools/Microsoft Ajax Minifier/"
+      Command='"$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/AjaxMinifier.exe" "$(MSBuildProjectDirectory)/Resources/csso-combined.js" –out "$(MSBuildProjectDirectory)/Resources/csso-combined.min.js" -ignore:JS1019
+"$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/AjaxMinifier.exe" "$(MSBuildProjectDirectory)/Resources/cssoHelper.js" –out "$(MSBuildProjectDirectory)/Resources/cssoHelper.min.js"'
+      WorkingDirectory="$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/"
       ConsoleToMsBuild="true" />
   </Target>
 

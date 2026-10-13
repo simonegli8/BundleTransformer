@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Product>Bundle Transformer: UglifyJS</Product>
     <VersionPrefix>1.14.0</VersionPrefix>
-    <TargetFramework>net40</TargetFramework>
+    <TargetFrameworks>net40;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <NoWarn>$(NoWarn);CS1591</NoWarn>
@@ -22,11 +22,16 @@
     <PackageReleaseNotes>Enabled a SourceLink.</PackageReleaseNotes>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Reference Include="System.configuration" Pack="false" />
+  <ItemGroup Condition="$(TargetFramework) == 'net40'">
+    <Reference Include="System.Configuration" Pack="false" />
+  </ItemGroup>
 
+  <ItemGroup Condition="$(TargetFramework) != 'net40'">
+    <PackageReference Include="WebFormsForCore.Configuration" Version="1.6.8" Pack="true" />
+  </ItemGroup>
+  <ItemGroup>
     <PackageReference Include="JavaScriptEngineSwitcher.Core" Version="3.24.1" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
 
     <ProjectReference Include="../BundleTransformer.Core/BundleTransformer.Core.csproj" />
   </ItemGroup>
@@ -56,10 +61,10 @@
     <None Include="../../Licenses/newtonsoft-json-license.txt" PackagePath="/" Pack="true" Visible="false" />
   </ItemGroup>
 
-  <Target Name="JsMinification" AfterTargets="BeforeBuild">
-    <Exec Command='AjaxMinifier.exe "$(ProjectDir)Resources/uglify-combined.js" –out "$(ProjectDir)Resources/uglify-combined.min.js" -ignore:JS1019
-AjaxMinifier.exe "$(ProjectDir)Resources/uglifyJsHelper.js" –out "$(ProjectDir)Resources/uglifyJsHelper.min.js"'
-      WorkingDirectory="$(ProjectDir)../../tools/Microsoft Ajax Minifier/"
+  <Target Name="JsMinification" BeforeTargets="DispatchToInnerBuilds" Condition="'$(TargetFramework)' == ''">
+    <Exec Command='"$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/AjaxMinifier.exe" "$(MSBuildProjectDirectory)/Resources/uglify-combined.js" –out "$(MSBuildProjectDirectory)/Resources/uglify-combined.min.js" -ignore:JS1019
+"$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/AjaxMinifier.exe" "$(MSBuildProjectDirectory)/Resources/uglifyJsHelper.js" –out "$(MSBuildProjectDirectory)/Resources/uglifyJsHelper.min.js"'
+      WorkingDirectory="$(MSBuildProjectDirectory)/../../tools/Microsoft Ajax Minifier/"
       ConsoleToMsBuild="true" />
   </Target>
 

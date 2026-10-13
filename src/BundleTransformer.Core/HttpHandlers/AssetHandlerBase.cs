@@ -368,19 +368,12 @@ namespace BundleTransformer.Core.HttpHandlers
 		/// <returns>Hash algorithm</returns>
 		private static SHA256 CreateHashAlgorithm()
 		{
+#if NETFRAMEWORK
 			bool isMonoRuntime = (Type.GetType("Mono.Runtime") != null);
-			SHA256 hashAlgorithm;
 
-			if (!isMonoRuntime)
-			{
-				hashAlgorithm = new SHA256CryptoServiceProvider();
-			}
-			else
-			{
-				hashAlgorithm = new SHA256Managed();
-			}
-
-			return hashAlgorithm;
+			if (!isMonoRuntime) return new SHA256CryptoServiceProvider();
+#endif
+			return  SHA256.Create();
 		}
 
 		/// <summary>
