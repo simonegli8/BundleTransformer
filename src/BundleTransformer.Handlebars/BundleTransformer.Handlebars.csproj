@@ -27,8 +27,8 @@
     <Reference Include="System.Web" Pack="false" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework) != 'net40'">
-    <PackageReference Include="WebFormsForCore.Configuration" Version="1.6.8" Pack="true" />
-    <PackageReference Include="WebFormsForCore.Web" Version="1.6.8" Pack="true" />
+    <PackageReference Include="WebFormsForCore.Configuration" Version="1.7.0" Pack="true" />
+    <PackageReference Include="WebFormsForCore.Web" Version="1.7.0" Pack="true" />
   </ItemGroup>
 
   <ItemGroup>
