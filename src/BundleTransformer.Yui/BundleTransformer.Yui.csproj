@@ -25,7 +25,7 @@
     <Reference Include="System.Configuration" Pack="false" />
   </ItemGroup>
   <ItemGroup Condition="$(TargetFramework) != 'net452'">
-    <PackageReference Include="WebFormsForCore.Configuration" Version="1.7.0" Pack="true" />
+    <PackageReference Include="WebFormsForCore.Configuration" Version="1.7.1" Pack="true" />
   </ItemGroup>
 
   <ItemGroup>

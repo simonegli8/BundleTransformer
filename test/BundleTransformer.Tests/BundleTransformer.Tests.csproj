@@ -19,9 +19,9 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' != 'net462'">
-    <PackageReference Include="WebFormsForCore.Configuration" Version="1.7.0" Pack="true" />
-    <PackageReference Include="WebFormsForCore.Web" Version="1.7.0" Pack="true" />
-    <PackageReference Include="WebFormsForCore.Web.Optimization" Version="1.7.0" Pack="true" />
+    <PackageReference Include="WebFormsForCore.Configuration" Version="1.7.1" Pack="true" />
+    <PackageReference Include="WebFormsForCore.Web" Version="1.7.1" Pack="true" />
+    <PackageReference Include="WebFormsForCore.Web.Optimization" Version="1.7.1" Pack="true" />
   </ItemGroup>
 
   <ItemGroup>
